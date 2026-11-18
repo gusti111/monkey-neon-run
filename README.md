@@ -31,6 +31,27 @@ The game source documents 22 obstacle-wave patterns across seven difficulty tier
 | Jump | Space or Arrow Up | JUMP button or tap the game area |
 | Duck | Hold Arrow Down | Hold DUCK |
 
+## Gameplay loop
+
+```mermaid
+flowchart TD
+    A["Launch game"] --> B["Start or restart a run"]
+    B --> C["Runner advances"]
+    C --> D["Read obstacle pattern"]
+    D --> E{"Obstacle ahead?"}
+    E -->|Jump over| F["Jump"]
+    E -->|Duck under| G["Duck"]
+    E -->|Clear path| H["Continue running"]
+    F --> I["Update score and collectibles"]
+    G --> I
+    H --> I
+    I --> J{"Collision?"}
+    J -->|No| C
+    J -->|Yes| K["Game over"]
+    K --> L["Save local progress and best score"]
+    L --> B
+```
+
 ## Technology
 
 - HTML5
